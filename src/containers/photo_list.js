@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
-export default class PhotoList extends Component {
+class PhotoList extends Component {
+
+  renderPhoto(links){
+    console.log('links:',links);
+
+    var photoList = links.map(function(link){
+      return <div className="col-md-3 thumbnail">
+        <img src={link} />
+      </div>;
+    })
+
+    return(
+      <div className="row" >
+        { photoList }
+      </div>
+    );
+  }
+
   render(){
     return(
-      <div className="row">
-        <div className="col-md-3 thumbnail">
-          <img src="http://static.ddmcdn.com/en-us/apl/breedselector/images/breed-selector/dogs/breeds/shiba-inu_04_lg.jpg"/>
-        </div>
-        <div className="col-md-3 thumbnail">
-          <img src="http://static.ddmcdn.com/en-us/apl/breedselector/images/breed-selector/dogs/breeds/shiba-inu_04_lg.jpg"/>
-        </div>
-        <div className="col-md-3 thumbnail">
-          <img src="http://static.ddmcdn.com/en-us/apl/breedselector/images/breed-selector/dogs/breeds/shiba-inu_04_lg.jpg"/>
-        </div>
-        <div className="col-md-3 thumbnail">
-          <img src="http://static.ddmcdn.com/en-us/apl/breedselector/images/breed-selector/dogs/breeds/shiba-inu_04_lg.jpg"/>
-        </div>
+      <div>
+        {this.props.result.map(this.renderPhoto)}
       </div>
     )
   }
@@ -25,3 +32,5 @@ export default class PhotoList extends Component {
 function mapStateToprops({ result }){
   return { result };
 }
+
+export default connect(mapStateToprops)(PhotoList);

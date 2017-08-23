@@ -7,10 +7,10 @@ export const FETCHED_TERM = 'FETCHED_TERM';
 export function fetchTerm(searchTerm){
   console.log('seatchTerm: ' + searchTerm);
 
-  const request = $.getJSON({
+  const request = $.ajax({
     url: URL,
     dataType: 'jsonp',
-    data: {"tag": searchTerm, "format": "json"}
+    data: {"tags": searchTerm, "format": "json"}
   });
 
   console.log(request);
