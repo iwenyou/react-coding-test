@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 
 class PhotoList extends Component {
 
@@ -8,13 +7,13 @@ class PhotoList extends Component {
     console.log('links:',links);
 
     var photoList = links.map(function(link){
-      return <div className="col-md-3 thumbnail">
-        <img src={link} />
+      return <div className="col-md-3 thumbnail" key={link}>
+        <img src={link} alt="not available"/>
       </div>;
     })
 
     return(
-      <div className="row" >
+      <div className="row" key={links}>
         { photoList }
       </div>
     );
